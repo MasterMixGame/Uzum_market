@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class FavsPage extends StatefulWidget {
-  const FavsPage({super.key});
+class FavoritePage extends StatefulWidget {
+  const FavoritePage({super.key});
 
   @override
-  State<FavsPage> createState() => _FavsPageState();
+  State<FavoritePage> createState() => _FavoritePageState();
 }
 
-class _FavsPageState extends State<FavsPage> {
+class _FavoritePageState extends State<FavoritePage> {
   @override
   Widget build(BuildContext context) {
     return const Placeholder();

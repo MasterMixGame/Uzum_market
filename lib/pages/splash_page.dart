@@ -11,15 +11,16 @@ class SplashPage extends StatelessWidget {
         Navigator.pushAndRemoveUntil(context,
             MaterialPageRoute(builder: (_) => MainPage()), (route) => false));
     return Scaffold(
-      body: Center(
-          child: CircleAvatar(
-        backgroundColor: Color.fromARGB(255, 228, 213, 248),
-        radius: 105,
-        child: CircleAvatar(
-          backgroundImage: AssetImage(AppImages.img11),
-          radius: 100,
-        ),
-      )),
+        body: Center(
+              child: CircleAvatar(
+                backgroundColor: Color.fromARGB(253, 231, 231, 231),
+                radius: 105,
+                child: CircleAvatar(
+                  backgroundImage: AssetImage(AppImages.img11),
+                  radius: 100,
+                ),
+              )
+          ),
     );
   }
 }
