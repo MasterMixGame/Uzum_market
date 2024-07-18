@@ -4,9 +4,11 @@ import 'package:uzum_market/pages/splash_page.dart';
 
 import '../Components/Constants.dart';
 import '../Components/mediaquery.dart';
+import 'package:uzum_market/data/models/product_model.dart';
 
 class ProductWidget extends StatefulWidget {
-  const ProductWidget({super.key});
+  Product product;
+  ProductWidget({required this.product,super.key});
 
   @override
   State<ProductWidget> createState() => _ProductWidgetState();
@@ -24,19 +26,16 @@ class _ProductWidgetState extends State<ProductWidget> {
           Container(
             height: m_w(context)*0.52.toDouble(),
             width: m_w(context)*0.552,
-            child: PageView(
-              scrollDirection: Axis.horizontal,
-              children: [
-                PageViewWidget(image: AppImages.img11),
-                PageViewWidget(image: AppImages.img11),
-                PageViewWidget(image: AppImages.img11),
-                PageViewWidget(image: AppImages.img11),
-                PageViewWidget(image: AppImages.img11),
-              ],
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: NetworkImage(widget.product.image),
+                fit: BoxFit.cover,
+              ),
+              borderRadius: BorderRadius.circular(10),
             ),
           ),
           SizedBox(height: 5),
-          Text('Grechka Mistal Yadric 900 g'),
+          Text(widget.product.title, maxLines: 2,),
           SizedBox(
             height: 20,
           ),
@@ -45,8 +44,8 @@ class _ProductWidgetState extends State<ProductWidget> {
             children: [
               Column(
                 children: [
-                  Text('12.000'),
-                  Text('12.000'),
+                  Text(widget.product.price.toString(),),
+                  Text(widget.product.price.toString(),),
                 ],
               ),
               Container(

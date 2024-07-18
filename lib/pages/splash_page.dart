@@ -14,10 +14,10 @@ class SplashPage extends StatelessWidget {
         body: Center(
               child: CircleAvatar(
                 backgroundColor: Color.fromARGB(253, 231, 231, 231),
-                radius: 105,
+                radius: 80,
                 child: CircleAvatar(
                   backgroundImage: AssetImage(AppImages.img11),
-                  radius: 100,
+                  radius: 75,
                 ),
               )
           ),

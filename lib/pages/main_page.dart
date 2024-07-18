@@ -30,8 +30,7 @@ class _MainPageState extends State<MainPage> {
         backgroundColor: Colors.white,
         elevation: 0,
         actions: [
-          Container(
-            child: Center(
+          currentPage == 0? Center(
               child: Container(
                 margin: EdgeInsets.symmetric(horizontal: 19),
                 height: m_h(context)*0.05,
@@ -65,8 +64,7 @@ class _MainPageState extends State<MainPage> {
                   ),
                 )
               ),
-            ),
-          )
+            ):Container(),
         ],
       ),
       body: pages[currentPage],

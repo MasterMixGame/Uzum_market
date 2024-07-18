@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:uzum_market/Components/Constants.dart';
 import 'package:uzum_market/Components/mediaquery.dart';
+import 'package:uzum_market/data/repositores/app_repository.dart';
 import 'package:uzum_market/pages/pageview_widgets.dart';
 import 'package:uzum_market/pages/product_widget.dart';
-
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -19,7 +19,7 @@ class _HomePageState extends State<HomePage> {
       body: Column(
         children: [
           SizedBox(
-            height: m_w(context)*0.52,
+            height: m_w(context) * 0.52,
             child: PageView(
               children: [
                 PageViewWidget(image: AppImages.img1),
@@ -33,50 +33,115 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           ), //
-          SizedBox(height: 10),// PageView
+          SizedBox(height: 10), // PageView
           DefaultTabController(
               length: 3,
               child: Column(
                 children: [
                   TabBar(
                     tabs: [
-                      Tab(child: Text('Barakali juma'),),
-                      Tab(child: Text('Mashhur'),),
-                      Tab(child: Text('Yangi'),),
+                      Tab(
+                        child: Text('Barakali juma'),
+                      ),
+                      Tab(
+                        child: Text('Mashhur'),
+                      ),
+                      Tab(
+                        child: Text('Yangi'),
+                      ),
                     ],
                   ),
                   Container(
-                    height: m_w(context)*0.85,
+                    height: m_w(context) * 0.85,
                     width: m_w(context).toDouble(),
                     child: TabBarView(
                       children: [
-                        GridView.builder(
-                            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2,
-                              childAspectRatio: 0.60
-                            ),
-                            itemBuilder: (context, index)=>ProductWidget(),
+                        FutureBuilder(
+                          builder: (context, snapshot) {
+                            if(snapshot.connectionState == ConnectionState.waiting)
+                              {
+                               return Expanded(
+                                   child: Center(
+                                      child: CircularProgressIndicator(),
+                                   )
+                               );
+                              }
+                            if (snapshot.hasData) {
+                              List? products = snapshot.data;
+                              return GridView.builder(
+                                gridDelegate:
+                                    SliverGridDelegateWithFixedCrossAxisCount(
+                                        crossAxisCount: 2,
+                                        childAspectRatio: 0.60),
+                                itemBuilder: (context, index) => ProductWidget(
+                                  product: products[index],
+                                ),
+                                itemCount: products!.length,
+                              );
+                            }
+                            return Container();
+                          },
+                          future: AppRepository.getProductsByCategoryFromApi("men's clothing"),
                         ),
-                        GridView.builder(
-                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2,
-                              childAspectRatio: 0.62
-                          ),
-                          itemBuilder: (context, index)=>ProductWidget(),
+                        FutureBuilder(
+                          builder: (context, snapshot) {
+                            if(snapshot.connectionState == ConnectionState.waiting)
+                            {
+                              return Expanded(
+                                  child: Center(
+                                    child: CircularProgressIndicator(),
+                                  )
+                              );
+                            }
+                            if (snapshot.hasData) {
+                              List? products = snapshot.data;
+                              return GridView.builder(
+                                gridDelegate:
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: 2,
+                                    childAspectRatio: 0.60),
+                                itemBuilder: (context, index) => ProductWidget(
+                                  product: products[index],
+                                ),
+                                itemCount: products!.length,
+                              );
+                            }
+                            return Container();
+                          },
+                          future: AppRepository.getProductsByCategoryFromApi("women's clothing"),
                         ),
-                        GridView.builder(
-                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2,
-                              childAspectRatio: 0.62
-                          ),
-                          itemBuilder: (context, index)=>ProductWidget(),
+                        FutureBuilder(
+                          builder: (context, snapshot) {
+                            if(snapshot.connectionState == ConnectionState.waiting)
+                            {
+                              return Expanded(
+                                  child: Center(
+                                    child: CircularProgressIndicator(),
+                                  )
+                              );
+                            }
+                            if (snapshot.hasData) {
+                              List? products = snapshot.data;
+                              return GridView.builder(
+                                gridDelegate:
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: 2,
+                                    childAspectRatio: 0.60),
+                                itemBuilder: (context, index) => ProductWidget(
+                                  product: products[index],
+                                ),
+                                itemCount: products!.length,
+                              );
+                            }
+                            return Container();
+                          },
+                          future: AppRepository.getProductsByCategoryFromApi("jewelery"),
                         ),
                       ],
                     ),
                   )
                 ],
-              )
-          )
+              ))
         ],
       ),
     );
