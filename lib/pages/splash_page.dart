@@ -7,19 +7,24 @@ class SplashPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Future.delayed(Duration(seconds: 5)).then((value) =>
+    Future.delayed(Duration(seconds: 3)).then((value) =>
         Navigator.pushAndRemoveUntil(context,
             MaterialPageRoute(builder: (_) => MainPage()), (route) => false));
     return Scaffold(
         body: Center(
-              child: CircleAvatar(
-                backgroundColor: Color.fromARGB(253, 231, 231, 231),
-                radius: 80,
-                child: CircleAvatar(
-                  backgroundImage: AssetImage(AppImages.img11),
-                  radius: 75,
-                ),
-              )
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                    CircleAvatar(
+                      backgroundColor: Color.fromARGB(253, 231, 231, 231),
+                      radius: 80,
+                      child: CircleAvatar(
+                        backgroundImage: AssetImage(AppImages.img11),
+                        radius: 75,
+                      ),
+                    ),
+                ],
+              ),
           ),
     );
   }

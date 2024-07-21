@@ -10,6 +10,12 @@ class SearchPage extends StatefulWidget {
 class _SearchPageState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      body: Container(
+        height: double.infinity,
+        width: 400,
+        color: Colors.amber,
+      ),
+    );
   }
 }

@@ -7,8 +7,8 @@ import '../Components/mediaquery.dart';
 import 'package:uzum_market/data/models/product_model.dart';
 
 class ProductWidget extends StatefulWidget {
-  Product product;
-  ProductWidget({required this.product,super.key});
+
+  const ProductWidget({super.key});
 
   @override
   State<ProductWidget> createState() => _ProductWidgetState();
@@ -26,16 +26,15 @@ class _ProductWidgetState extends State<ProductWidget> {
           Container(
             height: m_w(context)*0.52.toDouble(),
             width: m_w(context)*0.552,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: NetworkImage(widget.product.image),
-                fit: BoxFit.cover,
-              ),
-              borderRadius: BorderRadius.circular(10),
+            child: PageView(
+              children: [
+                PageViewWidget(image: AppImages.img11),
+                PageViewWidget(image: AppImages.img11),
+              ],
             ),
           ),
           SizedBox(height: 5),
-          Text(widget.product.title, maxLines: 2,),
+          Text('Buyerda sizning mahsulotingiz nomi'),
           SizedBox(
             height: 20,
           ),
@@ -44,8 +43,8 @@ class _ProductWidgetState extends State<ProductWidget> {
             children: [
               Column(
                 children: [
-                  Text(widget.product.price.toString(),),
-                  Text(widget.product.price.toString(),),
+                  Text('2.0000'),
+                  Text('2.0000'),
                 ],
               ),
               Container(

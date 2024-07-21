@@ -41,7 +41,7 @@ class _HomePageState extends State<HomePage> {
                   TabBar(
                     tabs: [
                       Tab(
-                        child: Text('Barakali juma'),
+                        child: Text('Barakali Juma'),
                       ),
                       Tab(
                         child: Text('Mashhur'),
@@ -56,86 +56,26 @@ class _HomePageState extends State<HomePage> {
                     width: m_w(context).toDouble(),
                     child: TabBarView(
                       children: [
-                        FutureBuilder(
-                          builder: (context, snapshot) {
-                            if(snapshot.connectionState == ConnectionState.waiting)
-                              {
-                               return Expanded(
-                                   child: Center(
-                                      child: CircularProgressIndicator(),
-                                   )
-                               );
-                              }
-                            if (snapshot.hasData) {
-                              List? products = snapshot.data;
-                              return GridView.builder(
-                                gridDelegate:
-                                    SliverGridDelegateWithFixedCrossAxisCount(
-                                        crossAxisCount: 2,
-                                        childAspectRatio: 0.60),
-                                itemBuilder: (context, index) => ProductWidget(
-                                  product: products[index],
-                                ),
-                                itemCount: products!.length,
-                              );
-                            }
-                            return Container();
-                          },
-                          future: AppRepository.getProductsByCategoryFromApi("men's clothing"),
+                        GridView.builder(
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        childAspectRatio: 0.5,
+                      ),
+                      itemBuilder: (context, index)=>ProductWidget(),
+                    ),
+                        GridView.builder(
+                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            childAspectRatio: 0.5,
+                          ),
+                          itemBuilder: (context, index)=>ProductWidget(),
                         ),
-                        FutureBuilder(
-                          builder: (context, snapshot) {
-                            if(snapshot.connectionState == ConnectionState.waiting)
-                            {
-                              return Expanded(
-                                  child: Center(
-                                    child: CircularProgressIndicator(),
-                                  )
-                              );
-                            }
-                            if (snapshot.hasData) {
-                              List? products = snapshot.data;
-                              return GridView.builder(
-                                gridDelegate:
-                                SliverGridDelegateWithFixedCrossAxisCount(
-                                    crossAxisCount: 2,
-                                    childAspectRatio: 0.60),
-                                itemBuilder: (context, index) => ProductWidget(
-                                  product: products[index],
-                                ),
-                                itemCount: products!.length,
-                              );
-                            }
-                            return Container();
-                          },
-                          future: AppRepository.getProductsByCategoryFromApi("women's clothing"),
-                        ),
-                        FutureBuilder(
-                          builder: (context, snapshot) {
-                            if(snapshot.connectionState == ConnectionState.waiting)
-                            {
-                              return Expanded(
-                                  child: Center(
-                                    child: CircularProgressIndicator(),
-                                  )
-                              );
-                            }
-                            if (snapshot.hasData) {
-                              List? products = snapshot.data;
-                              return GridView.builder(
-                                gridDelegate:
-                                SliverGridDelegateWithFixedCrossAxisCount(
-                                    crossAxisCount: 2,
-                                    childAspectRatio: 0.60),
-                                itemBuilder: (context, index) => ProductWidget(
-                                  product: products[index],
-                                ),
-                                itemCount: products!.length,
-                              );
-                            }
-                            return Container();
-                          },
-                          future: AppRepository.getProductsByCategoryFromApi("jewelery"),
+                        GridView.builder(
+                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            childAspectRatio: 0.5,
+                          ),
+                          itemBuilder: (context, index)=>ProductWidget(),
                         ),
                       ],
                     ),

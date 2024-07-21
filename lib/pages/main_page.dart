@@ -15,22 +15,22 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
+  int currentIndex = 0;
+  List BottomNavWidget = [
+    HomePage(),
+    SearchPage(),
+    ShoppingPage(),
+    FavoritePage(),
+    AccountPage(),
+  ];
   @override
   Widget build(BuildContext context) {
-    int currentPage = 0;
-    List pages=[
-      HomePage(),
-      SearchPage(),
-      ShoppingPage(),
-      FavoritePage(),
-      AccountPage(),
-    ];
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
         actions: [
-          currentPage == 0? Center(
+           Center(
               child: Container(
                 margin: EdgeInsets.symmetric(horizontal: 19),
                 height: m_h(context)*0.05,
@@ -64,25 +64,28 @@ class _MainPageState extends State<MainPage> {
                   ),
                 )
               ),
-            ):Container(),
+            ),
         ],
       ),
-      body: pages[currentPage],
+      body: Center(
+        child: BottomNavWidget[currentIndex],
+      ),
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: currentPage,
-        onTap: (value){
-          setState(() {
-            currentPage = value;
-          });
-        },
+
         type: BottomNavigationBarType.fixed,
         items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Bosh sahifa"),
-          BottomNavigationBarItem(icon: Icon(Icons.search),label: "Qidiruv"),
-          BottomNavigationBarItem(icon: Icon(Icons.shopping_bag_outlined),label: "Savat"),
-          BottomNavigationBarItem(icon: Icon(Icons.favorite_outline),label: "Istaklar"),
-          BottomNavigationBarItem(icon: Icon(Icons.person),label: "Kabinet"),
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Qidiruv'),
+          BottomNavigationBarItem(icon: Icon(Icons.shopping_bag_outlined), label: 'Savat'),
+          BottomNavigationBarItem(icon: Icon(Icons.favorite_outline), label: 'Istaklar'),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Kabinet'),
         ],
+        currentIndex: currentIndex,
+        onTap: (index) {
+          setState(() {
+            currentIndex = index;
+          });
+        },
       ),
     );
   }

@@ -10,6 +10,12 @@ class AccountPage extends StatefulWidget {
 class _AccountPageState extends State<AccountPage> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      body: Container(
+        height: double.infinity,
+        width: 400,
+        color: Colors.red,
+      ),
+    );
   }
 }
